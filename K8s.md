@@ -170,7 +170,8 @@
             EOF 
     8. chmod +x install-docker-kube.sh
     9. cd master/
-    10. vagrant up
+    10. vagrant plugin install vagrant-vbguest
+    11. sudo yum install rsync
    
     
    
