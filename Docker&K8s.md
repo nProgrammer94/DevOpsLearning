@@ -12,7 +12,16 @@
         2. Command run image: docker run -d -p {port binding - 5000:80} -- name {name_container} {name_image}
     
 # Vagrant
-   * Vagrant là cái vẹo gì? => Là công cụ tạo ra các máy ảo y chang hyper-v, VMWare hoặc VirtualBox
+* Vagrant là cái vẹo gì? => Là công cụ tạo ra các máy ảo y chang hyper-v, VMWare hoặc VirtualBox.
+    ## Một số định nghĩa trong Vagrant
+        1. Vagrantfile: chứa nội dung hướng dẫn cấu hình.
+    ## Vagrant basic command
+        1. vagrant init => Sinh file cấu hình máy ảo mới Vagrantfile
+        2. vagrant up => Thực hiện tạo / hoặc chạy máy ảo với cấu hình từ Vagrantfile
+        3. vagrant ssh => Kết nối ssh vào máy ảo, tài khoản kết nối là vagrant
+        4. vagrant halt => Dừng máy ảo (shutdown)
+        5. vagrant reload => Khởi động lại máy ảo, có đọc lại cấu hình trong Vagrantfile
+        6. vagrant destroy => Xóa máy ảo
     ## Setup on Centos 7
         1. sudo yum –y install epel-release
         2. sudo yum –y install gcc dkms make qt libgomp patch
@@ -26,4 +35,8 @@
         10. =================Install Vagrant===============================
         11. sudo wget https://releases.hashicorp.com/vagrant/2.2.2/vagrant_2.2.2_x86_64.rpm
         12. sudo yum –y localinstall vagrant_2.2.2_x86_64.rpm
+        13. ---Khởi tạo
+        14. sudo mkdir vagrant
+        15. cd vagrant/
+        16. vagrant init
    
