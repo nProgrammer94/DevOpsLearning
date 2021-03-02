@@ -60,3 +60,4 @@
         end                                        # hết cấu hình provider
      end                                        #  hết cấu hình tạo máy ảo
   ### Setup kubernetes cluster
+  
