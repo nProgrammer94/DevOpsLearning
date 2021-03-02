@@ -10,19 +10,26 @@
     ## Docker basic command
         1. Command build image: docker build -t {name_image} .
         2. Command run image: docker run -d -p {port binding - 5000:80} -- name {name_container} {name_image}
-    
-# Vagrant
-* Vagrant là cái vẹo gì? => Là công cụ tạo ra các máy ảo y chang hyper-v, VMWare hoặc VirtualBox.
-    ## Một số định nghĩa trong Vagrant
+    ## Docker Swarm va Kubernetes (k8s)
+    * Khi nói về Docker không thể không đề cập tới **container** đầu tiên như tiêu chuẩn mở để đóng gói & phân phối các ứng dụng container thì đã nãy sinh ra một vấn đề mới. Làm thế nào để tất cả containers được điều phối và lên lịch? làm thể nào để nâng cấp một cách liền mạch mà không bị gián đoạn dịch vụ? Làm cách nào để tracking status của ứng dụng, biết khi nào có sự cố và khởi động lại ứng dụng đó một cách kịp thời?  
+        ![image info](./images/2.png)    
+    * Lúc này hệ thống điều phối là cần thiết.
+       * Docker Swarm: cung cấp cách quản lý một số lượng lớn các container trải rộng trên các cụm máy chủ do Docker tao ra.
+       * Kubernetes: là bộ điều phối container được phát triển tại Google, đã được tài trợ cho CNCF và hiện là mã nguồn mở.
+    * **Tổng kết:** Kubernetes là một hệ thống toàn diện để tự động hóa việc triển khai, lập lịch và mở rộng quy mô của các ứng dụng được container hóa. Hiện tại, Kubernetes là công ty dẫn đầu thị trường và là tiêu chuẩn cho các bộ điều phối container và deploy các ứng dụng phân tán. Kubernetes có thể chạy được trên các dịch vụ đám mây hoặc tại chỗ (on-premise), có tính mô-đun cao, mã nguồn mở và có một cộng đồng sôi động.
+# Kubernetes
+ ## Vagrant
+  * Vagrant là cái vẹo gì? => Là công cụ tạo ra các máy ảo y chang hyper-v, VMWare hoặc VirtualBox.
+  ### Một số định nghĩa trong Vagrant
         1. Vagrantfile: chứa nội dung hướng dẫn cấu hình.
-    ## Vagrant basic command
+  ### Vagrant basic command
         1. vagrant init => Sinh file cấu hình máy ảo mới Vagrantfile
         2. vagrant up => Thực hiện tạo / hoặc chạy máy ảo với cấu hình từ Vagrantfile
         3. vagrant ssh => Kết nối ssh vào máy ảo, tài khoản kết nối là vagrant
         4. vagrant halt => Dừng máy ảo (shutdown)
         5. vagrant reload => Khởi động lại máy ảo, có đọc lại cấu hình trong Vagrantfile
         6. vagrant destroy => Xóa máy ảo
-    ## Setup on Centos 7
+  ### Setup on Centos 7
         1. sudo yum –y install epel-release
         2. sudo yum –y install gcc dkms make qt libgomp patch
         3. sudo yum –y install kernel-headers kernel-devel binutils glibc-headers glibc-devel font-forge
