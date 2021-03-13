@@ -82,5 +82,27 @@
                     ![image info](./images/12.png) 
                5.  `*` là cho biết context hiện tại, nếu muốn chuyển làm việc sang context có tên kubernetes-admin@kubernetes. => `kubectl config use-context kubernetes-admin@kubernetes`
        12. Yeah, Master server ổn rồi. Tiếp theo thiết lập thằng culi (woker) :construction_worker: thôi.
-       13. 
-  
+           1.  Tạo Vagrantfile lần lượt cho Woker1 & Woker2. [Code here](https://github.com/nShieldSolo/DevOps).
+           2.  Sau đó vào từng thư mục, thực hiện lệnh vagrant up để tạo hai máy ảo. Chờ cũng hơi lâu à:sleeping:
+
+                ![image info](./images/13.png) 
+           3.  Hehe dễ như ăn bánh. Giờ vào lại con master nào.
+           4.  Tạo token ở master server. `kubeadm token create --print-join-command`
+
+                ![image info](./images/14.png) 
+           5.  Lấy cái lệnh vừa được tạo ra ở master => chạy trên 2 server worker.
+
+                ![image info](./images/15.png) 
+         
+       13. Giờ kiểm tra các node có trong Cluster => `kubectl get nodes`
+
+              ![image info](./images/16.png)   
+
+# Congratulation :clap:, Cưng đã setup thành công K8s :thumbsup: :punch: 
+---
+**Bài viết tham khảo:**
+  1. https://xuanthulab.net/gioi-thieu-va-cai-dat-kubernetes-cluster.html
+  2. https://kubernetes.io/vi/docs/tutorials/kubernetes-basics/
+  3. https://linhnh285.com/2019/03/20/bai-3-cai-dat-container-network-interface/
+  4. https://dbafromthecold.com/2020/02/21/merge-kubectl-config-files-on-windows/
+---
