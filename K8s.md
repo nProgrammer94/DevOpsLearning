@@ -1,4 +1,4 @@
-# Chap 2: Kubernetes
+# Chap 3: Kubernetes
  ## Vagrant
   * Vagrant là cái vẹo gì? => Là công cụ tạo ra các máy ảo y chang hyper-v, VMWare hoặc VirtualBox.
   ### Một số định nghĩa trong Vagrant
