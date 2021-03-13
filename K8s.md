@@ -47,5 +47,40 @@
           ![image info](./images/9.png) 
        1. Tạo folder **master** chứa cấu hình của master server.
        2. Folder config chứa action script (`khi setup 1 server cần cài đặt & bật 1 số tính năng như ssh, cài docker, tắt firewall,...`).
-       3. Folder **woker** chứa cấu hình của woker node.
+       3. Folder **woker** chứa cấu hình của woker node, [code here](https://github.com/nShieldSolo/DevOps).
+       4. Bây giờ bạn mở terminal & di chuyển(cd command) tới thư mục master.
+       5. Dùng lệnh `vagrant up` để khởi tạo master server.
+       6. Làm ly cafe, hút điếu thuốc :beer: đợi build server master lên sau đó ssh vào với ip đã setup trong file **master/vagrantfile**.
+       7. **Khởi tạo cluster trên :computer: master server** => `kubeadm init --apiserver-advertise-address=172.16.10.100 --pod-network-cidr=192.168.0.0/16`
+       8. Kết nối kubectl với cluster:
+          1. `mkdir -p $HOME/.kube`
+          2. `sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config`
+          3. `sudo chown $(id -u):$(id -g) $HOME/.kube/config`
+       9. Như đã biết mỗi pods sẽ có 1 ip trên cùng dải & khai báo cho kubeadm init. Nên tất cả các pod trên cùng cluster **không cần quan tâm nó nằm ở host nào, chỉ cần biết ip or service name là có thể kết nối với nhau**. Và điều này được xữ lý bởi **Network plugin**. Calico là 1 plugin Network bên cạnh Flannel là 2 plugin phổ biến. Ở đây mình sẽ dùng calico => `kubectl apply -f https://docs.projectcalico.org/v3.10/manifests/calico.yaml`
+       10. Okie, giờ đi check nháy coi em nó sao rồi nhá: 
+           1.  kubectl cluster-info # check cluster
+           2.  kubectl get nodes # check node in cluster
+           3.  kubectl get pods -A # check pods.
+
+              ![image info](./images/10.png) 
+       11. Bây giờ cần cấu hình kubectl để truy cập đến các Cluster
+           1.  Quay về máy host (máy cài virtual box) của bạn.
+           2.  Backup file config từ master server về máy của bạn: `scp root@172.16.10.100:/etc/kubernetes/admin.conf D:\Sources\DevOps\vagrant\config\config-mycluster`
+           3.  trên máy sẽ có 2 file cấu hình: 
+               + `D:\Sources\DevOps\vagrant\config\config-mycluster` cấu hình kết nối tới Cluster mới tạo (trên master server).
+               + `C:\Users\{YourAccount}\.kube\config` cấu hình kết nối đến Cluster cục bộ của bản Kubernetes có sẵn của Docker.
+           4.  Mở terminal chạy => `kubectl config view` 
+
+                ![image info](./images/11.png)     
+           5.  Ở hình phía trên thấy mục `current-context` là context có tên `docker-desktop`. Có nghĩa là nó đang kết nối đến cluster có tên docker-desktop.
+           6.  Giờ thì merge 2 file config vs config-mycluster thành 1 & save lại thành 1 config. Chạy bằng `Powershell` trên windows: 
+               1.  `$env:KUBECONFIG="C:\users\{YourAccount}\.kube\config;D:\Sources\DevOps\vagrant\config\config-mycluster"`
+               2.  `kubectl config view  --raw > C:\users\{YourAccount}\.kube\config_temp`
+               3.  Copy file config ./kube/config lưu vào thư mục config trong workspace (backup lại cho chắc cú).
+               4.  Rename file config_temp sang config đè lên file cũ.
+
+                    ![image info](./images/12.png) 
+               5.  `*` là cho biết context hiện tại, nếu muốn chuyển làm việc sang context có tên kubernetes-admin@kubernetes. => `kubectl config use-context kubernetes-admin@kubernetes`
+       12. Yeah, Master server ổn rồi. Tiếp theo thiết lập thằng culi (woker) :construction_worker: thôi.
+       13. 
   
