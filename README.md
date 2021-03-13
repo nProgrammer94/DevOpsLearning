@@ -290,7 +290,7 @@
 
 # Congratulation :clap:, Cưng đã setup thành công K8s :thumbsup: :punch: 
 
-# Chap 3.2: Kubernetes Dashboard
+# Chap 4: Kubernetes Dashboard
 
 **Bài viết tham khảo:**
   1. https://xuanthulab.net/gioi-thieu-va-cai-dat-kubernetes-cluster.html
