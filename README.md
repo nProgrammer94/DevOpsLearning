@@ -293,12 +293,12 @@
 
 # Chap 4: Kubernetes Dashboard
 
-   ![image info](./../images/1.jpg) 
+   ![image info](./images/1.jpg) 
 
    * Qua 3 phần trước gõ terminal mệt nghỉ :unamused: & làm mọi thứ quá phức tạp. Các anh dev làm ra các trang web để hỗ trợ user sử dụng dễ dàng hơn & đẹp mắt hơn :wink:. Vậy tại sao lại không có 1 màn hình để quản lý Kubernetes ?
    * Hehe mấy anh google có tặng kèm thêm 1 công cụ trên platform Web để giải quyết vấn đề trên. Cháu nó gọi là **Kubernetes Dashboard**
 
-     ![image info](./../images/17.png) 
+     ![image info](./images/17.png) 
 
 
       ## Let's go :hammer:
@@ -309,11 +309,11 @@
         3. Đổi tên file yaml để dễ nhớ hơn: dashboard-v2.2.yaml
         4. Tiến hành chỉnh sửa file. Port của Kubernetes Cluster `từ 30000 đến 32767`
 
-      ![image info](./../images/18.png) 
+      ![image info](./images/18.png) 
 
         5. Xóa Secret có tên kubernetes-dashboard-certs. Đoạn cấu hình này để khởi tạo Secret cấu hình xác thực SSL khi truy cập Dashboard, ta xóa nó đi bằng cách comment như sau:
 
-       ![image info](./../images/19.png) 
+       ![image info](./images/19.png) 
 
         6. Tạo ra 1 image để đăng ký SSL (Linux ko cần)
 
@@ -333,7 +333,7 @@
         10. `kubectl create secret generic kubernetes-dashboard-certs --from-file=certs -n kubernetes-dashboard` # add SSL
         11. Truy cập: https://localhost:31000
 
-       ![image info](./../images/20.png)
+       ![image info](./images/20.png)
 
         12. Tạo một file có tên admin-user.yaml
 
