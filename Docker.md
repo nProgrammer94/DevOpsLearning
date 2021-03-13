@@ -7,9 +7,15 @@
         4. Volumes: là phần dữ liệu được tạo ra khi container được khởi tạo.
     ## Docker architecture
     ![image info](./images/architecture.svg)
+    ## Docker compose
+    * Docker compose là công cụ để định nghĩa và run milti-container cho Docker. Ví dụ: nếu bạn có 3 image: BE, FE & DB được đóng gói thành 3 image thì lúc này cần 1 công cụ để có thể chạy 3 image này & 1 số setting khác...
+    ![image info](./images/4.jpg)
     ## Docker basic command
         1. Command build image: docker build -t {name_image} .
         2. Command run image: docker run -d -p {port binding - 5000:80} -- name {name_container} {name_image}
+        3. Run Compose: docker-compose up
+        4. Build Compose: docker-compose build
+        5. Scale Compose: docker-compose scale <tên service> = <số lượng>
     ## Docker Swarm va Kubernetes (k8s)
     * Khi nói về Docker không thể không đề cập tới **container** đầu tiên như tiêu chuẩn mở để đóng gói & phân phối các ứng dụng container thì đã nãy sinh ra một vấn đề mới. Làm thế nào để tất cả containers được điều phối và lên lịch? làm thể nào để nâng cấp một cách liền mạch mà không bị gián đoạn dịch vụ? Làm cách nào để tracking status của ứng dụng, biết khi nào có sự cố và khởi động lại ứng dụng đó một cách kịp thời?  
         ![image info](./images/2.png)    
