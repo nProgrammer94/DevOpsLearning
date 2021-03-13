@@ -7,6 +7,7 @@
   * Windows:   ![image info](./images/5.png) 
   * Linux: **lscpu**  ![image info](./images/6.png) 
   
+
   ## Let's Go
   * Để ảo hóa chúng ta sẽ cài **virtualbox** để tạo ra máy ảo & cài đặt vargant nha.
     
@@ -29,7 +30,8 @@
       2. sudo yum -y install https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.rpm
       3. vagrant --version # Check Version
     
-    ### Sample
+
+  ## Vagrant Cơ bản
       1. mkdir /var/vagrant/ #Tạo 1 thư mục chứa project
       2. cd /var/vagrant/ 
       3. vagrant init # Khởi tạo file Vagrantfile
@@ -54,6 +56,8 @@
       8. Khi máy ảo đang chạy, vẫn đang ở dòng lệnh tại thư mục chứa file Vagrant để kết nối đến máy ảo bằng giao thức ssh gõ lệnh sau:
          1. vagrant ssh # ssh -> logout: exit
          2. sudo -i #Bạn sẽ đăng nhập vào máy ảo với tài khoản user có tên là vagrant, từ tài khoản này nếu muốn chuyển sang root
+
+
     ### Lệnh vagrant hay dùng
     | Lệnh            | Thông tin                                                    |
     | --------------- | ------------------------------------------------------------ |
@@ -65,7 +69,108 @@
     | vagrant destroy | Xóa máy ảo                                                   |
     
 
-  ## Nâng cao
+  ## Vagrant Nâng cao
 
     ### Đồng bộ thư mục
-    * Mặc định khi chạy máy ảo, nó đã đồng bộ qua lại giữa thư mục chứa file Vagrantfile vào thư mục /vagrant/ của máy ảo. Nếu muốn cấu hình đồng bộ sử dụng config.vm.synced_folder, ví dụ cần đồng bộ thư mục máy host hiện tại . vào thư mục /data/mydata/ của máy ảo
+    * Mặc định khi chạy máy ảo, nó đã đồng bộ qua lại giữa thư mục chứa file Vagrantfile vào thư mục /vagrant/ của máy ảo. Nếu muốn cấu hình đồng bộ sử dụng config.vm.synced_folder, ví dụ cần đồng bộ thư mục máy host hiện tại . vào thư mục /data/mydata/ của máy ảo.  
+  
+          config.vm.synced_folder '.',  '/data/mydata/'
+    * sửa lại Vagrantfile như sau:
+  
+                # -*- mode: ruby -*-
+                # vi: set ft=ruby :
+
+                Vagrant.configure(2) do |config|                # Bắt đầu khai báo máy ảo
+                  config.vm.box = 'centos/7'                    # Sử dụng Box centos/7 tạo máy ảo
+
+                  config.vm.synced_folder '/var/vagrant/hehe/', '/var/vagrant/'    # Chia sẻ thư mục máy host và máy ảo
+
+                  config.vm.provider "virtualbox" do |vb|       # Máy ảo dùng nền tảng virtualbox, với các cấu hình bổ sung thêm cho provider
+                    vb.name = "may-ao-01"                      # đặt tên máy ảo tạo ra
+                    vb.cpus = 2                                # cấp 2 nhân CPU
+                    vb.memory = "2048"                         # cấu hình dùng 2GB bộ nhớ
+                  end                                           # hết cấu hình provider
+
+                end                                             #  hết cấu hình tạo máy ảo
+    * Chạy lệnh **vagrant reload** để nạp lại cấu hình máy ảo
+
+
+    ### Forward cổng máy ảo ra host
+    * Nếu muốn chuyển cổng từ máy ảo ra máy host, ví dụ cổng máy ảo là 80 ra cổng máy host 8080 (có nghĩa là từ máy host truy cập cổng 8080 - locahost:8080 - thì có nghĩa là truy cập cổng 80 của máy ảo).
+  
+            config.vm.network "forwarded_port", guest: 80, host: 8080
+    * Ngoài ra bạn cũng có thể thiết lập cho máy ảo có cấu hình với địa chỉ IP do bạn chỉ định và NAT giúp máy host (các máy khác trong LAN) truy cập đến địa chỉ này của máy ảo mà không cần forward cổng.
+
+            config.vm.network "private_network", ip: "192.168.10.155"
+    * Với cấu hình trên, thì địa chỉ máy ảo là 192.168.10.155, bạn có thể truy cập đến các cổng của máy ảo với địa chỉ IP này, ví dụ http://192.168.10.155 (tức cổng 80).
+
+
+    ### Provision - chạy lệnh khi tạo máy ảo
+
+    * Trong quá trình tạo máy ảo, sau khi nạp Box, bạn có thể chạy các lệnh, các script của hệ điều hành, nếu chạy một script từ file myscript.sh thì cấu hình là:
+
+          config.vm.provision "shell", path: "./myscript.sh"
+
+    * Vagrantfile (Ví dụ sau tạo máy ảo CentOS, cài Apache, PHP)
+
+
+                # -*- mode: ruby -*-
+                # vi: set ft=ruby :
+
+                Vagrant.configure(2) do |config|                # Bắt đầu khai báo máy ảo
+                  config.vm.box = 'centos/7'                    # Sử dụng Box centos/7 tạo máy ảo
+
+                  config.vm.network "private_network", ip: "192.168.10.55"   # Lập IP cho máy ảo
+                  config.vm.hostname = "master.xtl"             # Đặt hostname cho máy ảo
+
+                  config.vm.synced_folder '.', '/var/www/public/' # Chia sẻ thư mục máy host và máy ảo
+
+                  config.vm.provider "virtualbox" do |vb|       # Máy ảo dùng nền tảng virtualbox, với các cấu hình bổ sung thêm cho provider
+                    vb.name = "may-ao-01"                      # đặt tên máy ảo tạo ra
+                    vb.cpus = 2                                # cấp 2 nhân CPU
+                    vb.memory = "2048"                         # cấu hình dùng 2GB bộ nhớ
+                  end                                           # hết cấu hình provider
+
+                # Chạy các lệnh cài đặt
+                config.vm.provision "shell", inline: <<-SHELL
+                    # cài đặt Apache, PHP
+                    yum update -y
+                    yum install httpd php -y
+                    systemctl start httpd
+                    systemctl enable httpd
+
+                    # Tat SELinux cua CentOS
+                    setenforce 0
+                    sed -i --follow-symlinks 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
+
+
+                    # Đổi root password thành 123 và cho phép login SSH qua root
+                    echo "123" | passwd --stdin root
+                    sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+                    systemctl reload sshd
+
+                    # Tạo file cấu hình vhost lưu vào /etc/httpd/conf.d/vhost.conf để Apache nạp
+                    echo '<VirtualHost *:80>
+                      DocumentRoot /var/www/public
+                      AllowEncodedSlashes On
+
+                      <Directory /var/www/public>
+                        Options +Indexes +FollowSymLinks
+                        DirectoryIndex index.php index.html
+                        Order allow,deny
+                        Allow from all
+                        AllowOverride All
+                        </Directory>
+                    </VirtualHost>' > /etc/httpd/conf.d/vhost.conf
+                    systemctl start httpd
+                SHELL
+                end  
+
+
+---
+**NOTE**
+
+Bài viết tham khảo:
+  1. https://xuanthulab.net/su-dung-vagrant-tao-va-quan-ly-may-ao.html
+
+---
