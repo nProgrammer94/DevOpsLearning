@@ -10,7 +10,8 @@
        4. kube-controller: điều khiển trang thái của cluster, thực hiện các tác vụ thêm xóa sửa ... các tài nguyên.
   2. kubelet: (thằng này kiểu chủ tịch xã) dịch vụ chạy trên tất cả các Node, giám sát chạy, dừng, duy trì các ứng dụng chạy trên node của nó.
   3. kube-proxy: cung cấp mạng proxy để các ứng dụng từ ngoài gọi vào cluster.
-  4. Pod: chứa một hoặc nhiều container, volume và nằm trong **Node**.
+  4. Volumes: nằm trong pod. Dùng để lưu trữ dữ liệu của Pod. Volumes được định nghĩa trong trong cấu hình file *yaml* khi khởi tạo các pods.
+  5. Pod: chứa một hoặc nhiều container, volume và nằm trong **Node**.
    
   ![image info](./images/module_03_pods.svg) 
   ![image info](./images/module_03_nodes.svg)
@@ -45,6 +46,6 @@
 
           ![image info](./images/9.png) 
        1. Tạo folder **master** chứa cấu hình của master server.
-       2. Folder config chứa action script (`khi setup 1 server cần cài đặt & bật 1 số tính năng như ssh, cài docker, tắt firewall,... `).
+       2. Folder config chứa action script (`khi setup 1 server cần cài đặt & bật 1 số tính năng như ssh, cài docker, tắt firewall,...`).
        3. Folder **woker** chứa cấu hình của woker node.
   
