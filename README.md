@@ -289,3 +289,13 @@
               ![image info](./images/16.png)   
 
 # Congratulation :clap:, Cưng đã setup thành công K8s :thumbsup: :punch: 
+
+# Chap 3.2: Kubernetes Dashboard
+
+**Bài viết tham khảo:**
+  1. https://xuanthulab.net/gioi-thieu-va-cai-dat-kubernetes-cluster.html
+  2. https://xuanthulab.net/su-dung-vagrant-tao-va-quan-ly-may-ao.html
+  3. https://kubernetes.io/vi/docs/tutorials/kubernetes-basics/
+  4. https://linhnh285.com/2019/03/20/bai-3-cai-dat-container-network-interface/
+  5. https://dbafromthecold.com/2020/02/21/merge-kubectl-config-files-on-windows/
+---
