@@ -10,7 +10,10 @@
        4. kube-controller: điều khiển trang thái của cluster, thực hiện các tác vụ thêm xóa sửa ... các tài nguyên.
   2. kubelet: (thằng này kiểu chủ tịch xã) dịch vụ chạy trên tất cả các Node, giám sát chạy, dừng, duy trì các ứng dụng chạy trên node của nó.
   3. kube-proxy: cung cấp mạng proxy để các ứng dụng từ ngoài gọi vào cluster.
-
+  4. Pod: chứa một hoặc nhiều container, volume và nằm trong **Node**.
+   
+  ![image info](./images/module_03_pods.svg) 
+  ![image info](./images/module_03_nodes.svg)
 
   ## Kubernetes cluster
 
@@ -38,5 +41,10 @@
   * **Baby Let's go:**
     1. Chúng ta sẽ tạo 1 workspace để quản lý source code cho dễ nha, ở đây mình dùng **Visual studio code** khá chất lượng. 
     2. Tạo thư mục vagrant để quản lý các file cấu hình(vagrantfile).
-    3. cấu trúc thư mục mình sẽ tạo như sau (*theo sở thích là gọn chứ không cần phải follow theo*) :laughing: : 
+    3. cấu trúc thư mục mình sẽ tạo như sau (*theo sở thích là gọn chứ không cần phải follow theo* :laughing:) : 
+
+          ![image info](./images/9.png) 
+       1. Tạo folder **master** chứa cấu hình của master server.
+       2. Folder config chứa action script (`khi setup 1 server cần cài đặt & bật 1 số tính năng như ssh, cài docker, tắt firewall,... `).
+       3. Folder **woker** chứa cấu hình của woker node.
   
