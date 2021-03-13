@@ -166,11 +166,10 @@
                 SHELL
                 end  
 
+     * Lưu ý: **Không nên comment tiếng việt, sẽ dẫn đến lỗi.**
+  
 
 ---
-**NOTE**
-
-Bài viết tham khảo:
+**Bài viết tham khảo:**
   1. https://xuanthulab.net/su-dung-vagrant-tao-va-quan-ly-may-ao.html
-
 ---
