@@ -43,11 +43,11 @@
   ### Setup kubernetes cluster
    * Phần này sẽ tạo ra một Cluster K8s hoàn chỉnh từ 3 servers chạy CentOS. Thông tin như sau:  
    
-|Tên máy/Hostname  |Thông tin hệ thống  |Vai trò  |
-|---------|---------|---------|
-|master.xtl     |    	HĐH CentOS7, Docker CE, Kubernetes. Địa chỉ IP 172.16.10.100     |    Khởi tạo là master     |
-|worker1.xtl     |    HĐH CentOS7, Docker CE, Kubernetes. Địa chỉ IP 172.16.10.101     |    	Khởi tạo là worker     |
-|worker2.xtl     |     	HĐH CentOS7, Docker CE, Kubernetes. Địa chỉ IP 172.16.10.102    |     Khởi tạo là worker    |
+| Tên máy/Hostname | Thông tin hệ thống                                           | Vai trò            |
+| ---------------- | ------------------------------------------------------------ | ------------------ |
+| master.xtl       | HĐH CentOS7, Docker CE, Kubernetes. Địa chỉ IP 172.16.10.100 | Khởi tạo là master |
+| worker1.xtl      | HĐH CentOS7, Docker CE, Kubernetes. Địa chỉ IP 172.16.10.101 | Khởi tạo là worker |
+| worker2.xtl      | HĐH CentOS7, Docker CE, Kubernetes. Địa chỉ IP 172.16.10.102 | Khởi tạo là worker |
    
   * Baby Let's go: 
     1. Tạo 1 folder chứa các cấu hình trên: sudo mkdir kubernetes
