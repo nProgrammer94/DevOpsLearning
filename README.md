@@ -25,7 +25,7 @@
   * Một số máy ảo của google, AWS, VNG hiện mặc định không mở tính năng ảo hóa hỗ trợ công nghệ **Virtualization**. Nên trước khi thiết lập nên kiểm tra xem có hỗ trợ công nghệ Virtualization không nhé. Có 2 loại là **VT-X(Chip intel) & AMD-V(Chip AMD)**.
   * Windows:   ![image info](./images/5.png) 
   * Linux: **lscpu**  ![image info](./images/6.png) 
-  * Enable AMD-V/VT-x trước nhé ![image info](./../images/27.png)
+  * Enable AMD-V/VT-x trước nhé ![image info](./images/27.png)
 
   ## Let's Go
   * Để ảo hóa chúng ta sẽ cài **virtualbox** để tạo ra máy ảo & cài đặt vargant nha.
